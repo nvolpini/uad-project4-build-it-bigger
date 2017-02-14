@@ -168,7 +168,6 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-25.0.1" level="project" />
     <orderEntry type="library" exported="" name="guava-jdk5-13.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-25.0.1" level="project" />
-    <orderEntry type="module" module-name="jokes-lib" exported="" />
     <orderEntry type="module" module-name="jokes-android-lib" exported="" />
   </component>
 </module>

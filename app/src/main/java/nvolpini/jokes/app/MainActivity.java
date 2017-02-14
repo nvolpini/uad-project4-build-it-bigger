@@ -1,10 +1,8 @@
 package nvolpini.jokes.app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
 
 
-		new EndpointsAsyncTask() {
+		new JokerAsyncTask() {
 
 			@Override
 			protected void onPostExecute(String result) {
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 				startActivity(intent);
 
 			}
-		}.execute(new Pair<Context, String>(this, "Manfred"));
+		}.execute(this);
 
 		/*
 		Intent intent = new Intent(this, JokerActivity.class);
