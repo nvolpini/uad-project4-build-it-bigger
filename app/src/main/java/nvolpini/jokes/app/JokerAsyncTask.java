@@ -21,6 +21,13 @@ public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
 
 	private Context context;
 
+	private TaskListener listener;
+	private Exception error = null;
+
+	public interface TaskListener {
+		void onComplete(String joke, Exception e);
+	}
+
 	@Override
 	protected String doInBackground(Context... params) {
 		if(myApiService == null) {  // Only do this once
@@ -48,10 +55,36 @@ public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
 		try {
 			return myApiService.tellJoke().execute().getJoke();
 		} catch (IOException e) {
+			error = e;
 			return e.getMessage();
 		}
 	}
 
 	@Override
-	protected abstract void onPostExecute(String result);
+	protected final void onPostExecute(String result) {
+
+		if (listener != null) {
+			listener.onComplete(result,error);
+		}
+
+		onJoke(result);
+
+	};
+
+	@Override
+	protected void onCancelled() {
+		super.onCancelled();
+		error = new InterruptedException("AsyncTask cancelled");
+		if (listener != null) {
+			listener.onComplete(null, error);
+		}
+	}
+
+	protected abstract void onJoke(String joke);
+
+	public JokerAsyncTask setListener(TaskListener listener) {
+		this.listener = listener;
+		return this;
+	}
+
 }

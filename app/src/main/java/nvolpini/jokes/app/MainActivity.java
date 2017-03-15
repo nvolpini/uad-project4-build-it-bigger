@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
 		new JokerAsyncTask() {
 
 			@Override
-			protected void onPostExecute(String result) {
+			protected void onJoke(String joke) {
 				Intent intent = new Intent(MainActivity.this, JokerActivity.class);
-				intent.putExtra(JokerActivity.JOKE_EXTRA, result);
+				intent.putExtra(JokerActivity.JOKE_EXTRA, joke);
 
 				startActivity(intent);
-
 			}
+
 		}.execute(this);
 
 		/*
