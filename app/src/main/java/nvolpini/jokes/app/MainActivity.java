@@ -44,28 +44,16 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
 
 
-		new JokerAsyncTask() {
-
+		new JokerAsyncTask(this, new JokerAsyncTask.TaskListener() {
 			@Override
-			protected void onJoke(String joke) {
+			public void onComplete(String joke, Exception error) {
 				Intent intent = new Intent(MainActivity.this, JokerActivity.class);
 				intent.putExtra(JokerActivity.JOKE_EXTRA, joke);
 
 				startActivity(intent);
 			}
+		}).execute();
 
-		}.execute(this);
-
-		/*
-		Intent intent = new Intent(this, JokerActivity.class);
-		intent.putExtra(JokerActivity.JOKE_EXTRA, Joker.tellJoke());
-
-		startActivity(intent);
-
-        Toast.makeText(this
-				//, "derp"
-				, Joker.tellJoke()
-				, Toast.LENGTH_SHORT).show();*/
     }
 
 

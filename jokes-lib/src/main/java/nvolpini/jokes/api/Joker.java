@@ -8,6 +8,8 @@ public class Joker {
 		"Knock, Knock... who is there? Nobody!"
 		,"I'm not funny!"
 		,"How many americans to replace lamp? Too many!"
+		,"This is not a joke!"
+		,"I'm bored!"
 	};
 
 	public static String tellJoke() {

@@ -16,20 +16,26 @@ import nvolpini.jokes.backend.jokeApi.JokeApi;
  * Created by neimar on 06/02/17.
  */
 
-public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
+public class JokerAsyncTask extends AsyncTask<Void, Void, String> {
 	private static JokeApi myApiService = null;
 
-	private Context context;
+	private final Context context;
 
-	private TaskListener listener;
+	private final TaskListener listener;
+
+	public JokerAsyncTask(Context context, TaskListener listener) {
+		this.context = context;
+		this.listener = listener;
+	}
+
 	private Exception error = null;
 
 	public interface TaskListener {
-		void onComplete(String joke, Exception e);
+		void onComplete(String joke, Exception error);
 	}
 
 	@Override
-	protected String doInBackground(Context... params) {
+	protected String doInBackground(Void... params) {
 		if(myApiService == null) {  // Only do this once
 			JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
 					new AndroidJsonFactory(), null)
@@ -49,8 +55,6 @@ public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
 			myApiService = builder.build();
 		}
 
-		context = params[0];
-		//String name = params[0].second;
 
 		try {
 			return myApiService.tellJoke().execute().getJoke();
@@ -63,11 +67,7 @@ public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
 	@Override
 	protected final void onPostExecute(String result) {
 
-		if (listener != null) {
 			listener.onComplete(result,error);
-		}
-
-		onJoke(result);
 
 	};
 
@@ -75,16 +75,7 @@ public abstract class JokerAsyncTask extends AsyncTask<Context, Void, String> {
 	protected void onCancelled() {
 		super.onCancelled();
 		error = new InterruptedException("AsyncTask cancelled");
-		if (listener != null) {
-			listener.onComplete(null, error);
-		}
-	}
-
-	protected abstract void onJoke(String joke);
-
-	public JokerAsyncTask setListener(TaskListener listener) {
-		this.listener = listener;
-		return this;
+		listener.onComplete(null, error);
 	}
 
 }
