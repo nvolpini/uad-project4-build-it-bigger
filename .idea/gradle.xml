@@ -7,11 +7,11 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/project4-build-it-bigger" />
-            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/project4-build-it-bigger/app" />
-            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/project4-build-it-bigger/joker-backend" />
-            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/project4-build-it-bigger/jokes-android-lib" />
-            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/project4-build-it-bigger/jokes-lib" />
+            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/uad-project4-build-it-bigger" />
+            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/uad-project4-build-it-bigger/app" />
+            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/uad-project4-build-it-bigger/joker-backend" />
+            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/uad-project4-build-it-bigger/jokes-android-lib" />
+            <option value="/data/neimar/devel/projects/android/nanodegree-android-developer/uad-project4-build-it-bigger/jokes-lib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
